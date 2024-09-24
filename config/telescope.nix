@@ -32,6 +32,11 @@
       mode = "n";
       group = "+git";
     }
+    {
+      __unkeyed-1 = "<leader><leader>";
+      mode = "n";
+      icon = "";
+    }
   ];
 
   keymaps = [
@@ -43,7 +48,6 @@
       action = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
       key = "<leader><leader>";
       mode = "n";
-      icon = "";
       options.silent = true;
     }
     ##############################################

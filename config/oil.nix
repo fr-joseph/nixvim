@@ -31,12 +31,19 @@
 
   };
 
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>o";
+      mode = "n";
+      icon = "";
+    }
+  ];
+
   keymaps = [
     {
       options.desc = "oil";
       action = "<cmd>Oil<CR>";
       key = "<leader>o";
-      icon = "";
       mode = "n";
       options.silent = true;
     }

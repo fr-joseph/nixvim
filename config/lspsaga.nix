@@ -8,7 +8,7 @@
     };
     ui = {
       border = "rounded"; # One of none, single, double, rounded, solid, shadow
-      codeAction = "💡"; # any symbol
+      codeAction = ""; # any symbol
     };
     hover = {
       openCmd = "!${my.browser}"; # Choose your browser
@@ -116,7 +116,7 @@
       key = "gT";
       action = "<cmd>Lspsaga peek_type_definition<CR>";
       options = {
-        desc = "Type Definition";
+        desc = "peek type def";
         silent = true;
       };
     }
