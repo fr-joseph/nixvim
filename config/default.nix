@@ -1,13 +1,16 @@
 {
   imports = [
+    ./cmp.nix
     ./colorizer.nix
     ./colorscheme.nix
     ./conform.nix
     ./dressing.nix
+    ./fidget.nix
     ./gitsigns.nix
     ./icons.nix
     ./keymaps.nix
     ./lsp.nix
+    ./lspsaga.nix
     ./lualine.nix
     ./neogit.nix
     ./noice.nix

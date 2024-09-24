@@ -1,4 +1,7 @@
 {
+  plugins.ts-autotag = {
+    enable = true;
+  };
   plugins.treesitter = {
     enable = true;
     settings = {
@@ -16,5 +19,3 @@
 
   };
 }
-
-

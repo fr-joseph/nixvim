@@ -33,6 +33,7 @@
               colorscheme.base16 = "gruvbox-dark-pale";
               # colorscheme.base16 = "decaf";
               displayServer = "wayland"; # 'x' or 'wayland'
+              browser = "vivaldi";
             };
           };
         };
