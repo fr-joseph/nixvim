@@ -4,18 +4,13 @@
     settings = {
       notifyOnError = true;
       formattersByFt = {
-        html = [["prettierd" "prettier"]];
-        css = [["prettierd" "prettier"]];
-        javascript = [["prettierd" "prettier"]];
-        javascriptreact = [["prettierd" "prettier"]];
-        typescript = [["prettierd" "prettier"]];
-        typescriptreact = [["prettierd" "prettier"]];
         java = ["google-java-format"];
-        python = ["black"];
         lua = ["stylua"];
         nix = ["nixfmt"];
-        markdown = [["prettierd" "prettier"]];
+        python = ["black"];
         rust = ["rustfmt"];
+        # default if no other formatters configured:
+        "_" = ["prettierd"];
       };
     };
   };
