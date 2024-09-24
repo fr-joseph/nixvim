@@ -1,5 +1,6 @@
 { my, ... }:
 {
+
   plugins.lspsaga = {
     enable = true;
     beacon = {
@@ -37,7 +38,7 @@
     lightbulb = {
       enable = true;
       sign = true;
-      virtualText = true;
+      virtualText = false;
     };
     implement = {
       enable = false;
@@ -69,7 +70,17 @@
       scrollDown = "<C-f>";
       scrollUp = "<C-b>";
     };
-  };
+  }; # end plugins.lspsaga
+
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>c";
+      mode = "n";
+      group = "+lsp";
+      icon = "󰖷";
+    }
+  ];
+
   keymaps = [
     {
       mode = "n";
@@ -179,5 +190,6 @@
         silent = true;
       };
     }
-  ];
+  ]; # end keymaps
+
 }

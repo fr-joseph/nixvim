@@ -73,48 +73,50 @@
           enable = true;
         };
       }; # end servers ------------------------------------
-      keymaps = {
-        diagnostic = {
-          "<leader>xo" = {
-            action = "open_float";
-            desc = "open";
-          };
-          "<leader>xn" = {
-            action = "goto_next";
-            desc = "next";
-          };
-          "<leader>xp" = {
-            action = "goto_prev";
-            desc = "prev";
-          };
-        }; # end diagnostic
-        lspBuf = {
-          K = {
-            action = "hover";
-            desc = "hover";
-          };
-          gD = {
-            action = "references";
-            desc = "refs";
-          };
-          gd = {
-            action = "definition";
-            desc = "def";
-          };
-          gi = {
-            action = "implementation";
-            desc = "impl";
-          };
-          gt = {
-            action = "type_definition";
-            desc = "type def";
-          };
-          "<C-k>" = {
-            action = "signature_help";
-            desc = "sig help";
-          };
-        }; # end lspBuf
-      }; # end keymaps
+
+      # keymaps = {
+      #   diagnostic = {
+      #     "<leader>xo" = {
+      #       action = "open_float";
+      #       desc = "open";
+      #     };
+      #     "<leader>xn" = {
+      #       action = "goto_next";
+      #       desc = "next";
+      #     };
+      #     "<leader>xp" = {
+      #       action = "goto_prev";
+      #       desc = "prev";
+      #     };
+      #   }; # end diagnostic
+      #   lspBuf = {
+      #     K = {
+      #       action = "hover";
+      #       desc = "hover";
+      #     };
+      #     gD = {
+      #       action = "references";
+      #       desc = "refs";
+      #     };
+      #     gd = {
+      #       action = "definition";
+      #       desc = "def";
+      #     };
+      #     gi = {
+      #       action = "implementation";
+      #       desc = "impl";
+      #     };
+      #     gt = {
+      #       action = "type_definition";
+      #       desc = "type def";
+      #     };
+      #     "<C-k>" = {
+      #       action = "signature_help";
+      #       desc = "sig help";
+      #     };
+      #   }; # end lspBuf
+      # }; # end keymaps
+
     }; # end lsp
   }; # end plugins
 

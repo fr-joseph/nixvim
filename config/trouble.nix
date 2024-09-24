@@ -10,7 +10,8 @@
     {
       __unkeyed-1 = "<leader>x";
       mode = "n";
-      group = "+diag";
+      group = "+trouble";
+      icon = "󰖷";
     }
   ];
 

@@ -43,6 +43,7 @@
       action = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
       key = "<leader><leader>";
       mode = "n";
+      icon = "";
       options.silent = true;
     }
     ##############################################

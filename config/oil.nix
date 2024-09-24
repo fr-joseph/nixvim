@@ -36,6 +36,7 @@
       options.desc = "oil";
       action = "<cmd>Oil<CR>";
       key = "<leader>o";
+      icon = "";
       mode = "n";
       options.silent = true;
     }
