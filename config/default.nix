@@ -2,12 +2,16 @@
   imports = [
     ./colorizer.nix
     ./colorscheme.nix
+    ./conform.nix
     ./gitsigns.nix
     ./icons.nix
     ./keymaps.nix
     ./lsp.nix
     ./lualine.nix
     ./neogit.nix
+    ./notify.nix
+    ./noice.nix
+    ./plenary.nix
     ./oil.nix
     ./options.nix
     ./telescope.nix

@@ -3,6 +3,13 @@
 
     enable = true;
 
+    settings = {
+      deleteToTrash = true;
+      viewOptions = {
+        showHidden = true;
+      };
+    };
+
     settings.keymaps = {
       "<C-b>" = "actions.parent";
       "<C-c>" = "actions.close";

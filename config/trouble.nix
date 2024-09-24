@@ -9,11 +9,6 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>x";
-      action = "+diag/qfix";
-    }
-    {
-      mode = "n";
       key = "<leader>xx";
       action = "<cmd>Trouble<cr>";
       options = {

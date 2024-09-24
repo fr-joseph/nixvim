@@ -7,6 +7,7 @@
         # https://github.com/oxalica/nil
         nil-ls = {
           enable = true;
+          cmd = [ "nixfmt" ];
         };
         ### bash ###---------------------------------------
         bashls = {
@@ -75,15 +76,15 @@
       }; # end servers ------------------------------------
       keymaps = {
         diagnostic = {
-          "<leader>do" = {
+          "<leader>xo" = {
             action = "open_float";
             desc = "open";
           };
-          "<leader>dn" = {
+          "<leader>xn" = {
             action = "goto_next";
             desc = "next";
           };
-          "<leader>dp" = {
+          "<leader>xp" = {
             action = "goto_prev";
             desc = "prev";
           };

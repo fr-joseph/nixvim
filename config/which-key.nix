@@ -24,10 +24,10 @@
         {
           __unkeyed-1 = "<leader>u";
           mode = "n";
-          group = "+UI";
+          group = "+ui";
         }
         {
-          __unkeyed-1 = "<leader>d";
+          __unkeyed-1 = "<leader>x";
           mode = "n";
           group = "+diag";
         }

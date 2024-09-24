@@ -27,6 +27,7 @@
           my = {
             username = "fj";
             colorscheme.base16 = "gruvbox-dark-pale";
+            # colorscheme.base16 = "decaf";
             displayServer = "wayland"; # 'x' or 'wayland'
           };
         };
@@ -44,7 +45,5 @@
         # `nix run .`
         default = nvim;
       };
-
-      formatter = pkgs.alejandra;
     });
 }

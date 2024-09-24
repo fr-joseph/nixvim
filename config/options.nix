@@ -65,6 +65,9 @@
     foldmethod = "expr";
     foldexpr = "nvim_treesitter#foldexpr()";
 
+    # use conform-nvim for gq formatting. ('formatexpr' is set to vim.lsp.formatexpr(), so you can format lines via gq if the language server supports it)
+    formatexpr = "v:lua.require'conform'.formatexpr()";
+
     wildmenu = true;
     wildmode = "longest:full"; # complete longest common match & show all in PUM
     wildoptions = "pum"; # show matches in pop-up-menu
