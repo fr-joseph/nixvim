@@ -2,8 +2,8 @@
   plugins.conform-nvim = {
     enable = true;
     settings = {
-      notifyOnError = true;
-      formattersByFt = {
+      notify_on_error = true;
+      formatters_by_ft = {
         java = ["google-java-format"];
         lua = ["stylua"];
         nix = ["nixfmt"];

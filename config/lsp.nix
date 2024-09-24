@@ -7,7 +7,6 @@
         # https://github.com/oxalica/nil
         nil-ls = {
           enable = true;
-          cmd = [ "nixfmt" ];
         };
         ### bash ###---------------------------------------
         bashls = {
