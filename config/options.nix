@@ -1,4 +1,5 @@
-{ lib, my, ... }: {
+{ lib, my, ... }:
+{
 
   clipboard.register = "unnamedplus";
   clipboard.providers.wl-copy.enable = lib.mkIf (my.displayServer == "wayland") true;
@@ -73,7 +74,12 @@
     wildoptions = "pum"; # show matches in pop-up-menu
 
     # TODO: preview vs popup
-    completeopt = [ "menu" "menuone" "noinsert" "preview" ]; # always show menu; don"t auto-insert
+    completeopt = [
+      "menu"
+      "menuone"
+      "noinsert"
+      "preview"
+    ]; # always show menu; don"t auto-insert
 
     conceallevel = 2; # hide concealed text; unless has replacement character
     concealcursor = ""; # but don"t conceal anything in cursorline
