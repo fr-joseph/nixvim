@@ -6,6 +6,14 @@
     };
   };
 
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed-1 = "<leader>x";
+      mode = "n";
+      group = "+diag";
+    }
+  ];
+
   keymaps = [
     {
       mode = "n";
@@ -45,5 +53,3 @@
     }
   ]; # end keymaps
 }
-
-

@@ -7,7 +7,7 @@
     };
     ui = {
       border = "rounded"; # One of none, single, double, rounded, solid, shadow
-      codeAction = "💡"; # Can be any symbol you want 💡
+      codeAction = "💡"; # any symbol
     };
     hover = {
       openCmd = "!${my.browser}"; # Choose your browser
@@ -35,8 +35,8 @@
       };
     };
     lightbulb = {
-      enable = false;
-      sign = false;
+      enable = true;
+      sign = true;
       virtualText = true;
     };
     implement = {
@@ -76,7 +76,7 @@
       key = "gd";
       action = "<cmd>Lspsaga finder def<CR>";
       options = {
-        desc = "Goto Definition";
+        desc = "goto def";
         silent = true;
       };
     }
@@ -85,27 +85,17 @@
       key = "gr";
       action = "<cmd>Lspsaga finder ref<CR>";
       options = {
-        desc = "Goto References";
+        desc = "goto refs";
         silent = true;
       };
     }
-
-    # {
-    #   mode = "n";
-    #   key = "gD";
-    #   action = "<cmd>Lspsaga show_line_diagnostics<CR>";
-    #   options = {
-    #     desc = "Goto Declaration";
-    #     silent = true;
-    #   };
-    # }
 
     {
       mode = "n";
       key = "gI";
       action = "<cmd>Lspsaga finder imp<CR>";
       options = {
-        desc = "Goto Implementation";
+        desc = "goto impl";
         silent = true;
       };
     }
@@ -125,17 +115,17 @@
       key = "K";
       action = "<cmd>Lspsaga hover_doc<CR>";
       options = {
-        desc = "Hover";
+        desc = "hover";
         silent = true;
       };
     }
 
     {
       mode = "n";
-      key = "<leader>cw";
+      key = "<leader>co";
       action = "<cmd>Lspsaga outline<CR>";
       options = {
-        desc = "Outline";
+        desc = "outline";
         silent = true;
       };
     }
@@ -145,7 +135,7 @@
       key = "<leader>cr";
       action = "<cmd>Lspsaga rename<CR>";
       options = {
-        desc = "Rename";
+        desc = "rename";
         silent = true;
       };
     }
@@ -155,7 +145,7 @@
       key = "<leader>ca";
       action = "<cmd>Lspsaga code_action<CR>";
       options = {
-        desc = "Code Action";
+        desc = "code action";
         silent = true;
       };
     }
@@ -165,7 +155,7 @@
       key = "<leader>cd";
       action = "<cmd>Lspsaga show_line_diagnostics<CR>";
       options = {
-        desc = "Line Diagnostics";
+        desc = "line diagnostics";
         silent = true;
       };
     }
@@ -175,7 +165,7 @@
       key = "[d";
       action = "<cmd>Lspsaga diagnostic_jump_next<CR>";
       options = {
-        desc = "Next Diagnostic";
+        desc = "next diagnostic";
         silent = true;
       };
     }
@@ -185,7 +175,7 @@
       key = "]d";
       action = "<cmd>Lspsaga diagnostic_jump_prev<CR>";
       options = {
-        desc = "Previous Diagnostic";
+        desc = "previous diagnostic";
         silent = true;
       };
     }

@@ -30,6 +30,15 @@
     };
 
   };
+
+  keymaps = [
+    {
+      options.desc = "oil";
+      action = "<cmd>Oil<CR>";
+      key = "<leader>o";
+      mode = "n";
+      options.silent = true;
+    }
+  ];
+
 }
-
-
