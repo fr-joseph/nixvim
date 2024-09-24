@@ -3,17 +3,18 @@
     ./colorizer.nix
     ./colorscheme.nix
     ./conform.nix
+    ./dressing.nix
     ./gitsigns.nix
     ./icons.nix
     ./keymaps.nix
     ./lsp.nix
     ./lualine.nix
     ./neogit.nix
-    ./notify.nix
     ./noice.nix
-    ./plenary.nix
+    ./notify.nix
     ./oil.nix
     ./options.nix
+    ./plenary.nix
     ./telescope.nix
     ./treesitter.nix
     ./trouble.nix
