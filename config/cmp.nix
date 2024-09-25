@@ -23,118 +23,47 @@
     cmp = {
       enable = true;
       autoEnableSources = false;
-      settings = {
-        experimental = {
-          ghost_text = false;
-        };
-      };
+      settings.experimental.ghost_text = false;
       settings = {
         mapping = {
-          __raw = ''
-            cmp.mapping.preset.insert({
-              ['<C-n>'] = cmp.mapping.select_next_item(),
-              ['<C-p>'] = cmp.mapping.select_prev_item(),
-              ['<C-e>'] = cmp.mapping.abort(),
-              ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-              ['<C-f>'] = cmp.mapping.scroll_docs(4),
-              ['<C-Space>'] = cmp.mapping.complete(),
-              -- ['<S-CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-              -- ['<C-y>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-
-              ['<C-Space>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  if luasnip.expandable() then
-                    luasnip.expand()
-                  else
-                    cmp.confirm({
-                      behavior = cmp.ConfirmBehavior.Insert,
-                      select = true,
-                    })
-                  end
-                else
-                  fallback()
-                end
-              end),
-
-              ['<Down>'] = {
-                c = function()
-                  local fn = function()
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Down>', true, false, true), 'n', true)
-                  end
-                  if cmp.visible() then
-                    fn = cmp.mapping.select_next_item(select_opts)
-                  end
-                  fn()
-                end,
-              },
-
-              ['<Up>'] = {
-                c = function()
-                  local fn = function()
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', true)
-                  end
-                  if cmp.visible() then
-                    fn = cmp.mapping.select_prev_item(select_opts)
-                  end
-                  fn()
-                end,
-              },
-
-
-              -- ["<Tab>"] = cmp.mapping(function(fallback)
-              --   if cmp.visible() then
-              --     cmp.select_next_item()
-              --   elseif luasnip.locally_jumpable(1) then
-              --     luasnip.jump(1)
-              --   else
-              --     fallback()
-              --   end
-              -- end, { "i", "s" }),
-
-              -- ["<S-Tab>"] = cmp.mapping(function(fallback)
-              --   if cmp.visible() then
-              --     cmp.select_prev_item()
-              --   elseif luasnip.locally_jumpable(-1) then
-              --     luasnip.jump(-1)
-              --   else
-              --     fallback()
-              --   end
-              -- end, { "i", "s" }),
-
-              ["<Tab>"] = cmp.mapping(function(fallback)
-                if luasnip.locally_jumpable(1) then
-                  luasnip.jump(1)
-                else
-                  fallback()
-                end
-              end, { "i", "s" }),
-
-              ["<S-Tab>"] = cmp.mapping(function(fallback)
-                if luasnip.locally_jumpable(-1) then
-                  luasnip.jump(-1)
-                else
-                  fallback()
-                end
-              end, { "i", "s" }),
-
-            })
-          '';
+          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-e>" = "cmp.mapping.close()";
+          "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<C-y>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
+          "<c-l>" = "cmp.mapping(
+                      function(fallback)
+                        if luasnip.expand_or_locally_jumpable() then
+                          luasnip.expand_or_jump()
+                        else
+                          fallback()
+                        end
+                      end)";
+          "<c-h>" = "cmp.mapping(
+                      function(fallback)
+                        if luasnip.locally_jumpable(-1) then
+                          luasnip.jump(-1)
+                        else
+                          fallback()
+                        end
+                      end)";
         };
         snippet = {
           expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         };
-        sources = {
-          __raw = ''
-            cmp.config.sources({
-              {name = 'nvim_lsp'},
-              {name = 'path'},
-              {name = 'luasnip'},
-              {name = 'cmdline'},
-            }, {
-                {name = 'buffer'},
-              })
-          '';
-        };
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
+          { name = "path"; }
+          { name = "cmdline"; }
+          {
+            name = "buffer";
+            # Words from other open buffers can also be suggested.
+            option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+          }
+        ];
         performance = {
           debounce = 60;
           fetching_timeout = 200;
@@ -164,6 +93,17 @@
 
   plugins.lspkind = {
     enable = true;
+    cmp = {
+      enable = true;
+      menu = {
+        nvim_lsp = "[LSP]";
+        nvim_lua = "[api]";
+        path = "[path]";
+        luasnip = "[snip]";
+        buffer = "[buffer]";
+        # neorg = "[neorg]";
+      };
+    };
     extraOptions = {
       maxwidth = 50;
       ellipsis_char = "...";

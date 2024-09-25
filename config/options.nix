@@ -76,9 +76,9 @@
     completeopt = [
       "menu"
       "menuone"
-      # "noinsert"
       "noselect"
-      "preview"
+      # "noinsert"
+      # "preview"
     ];
 
     conceallevel = 2; # hide concealed text; unless has replacement character

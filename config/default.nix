@@ -1,6 +1,7 @@
 {
   imports = [
     ./after-ftplugin.nix
+    ./indent-blankline.nix
     ./cmp.nix
     ./colorizer.nix
     ./colorscheme.nix
