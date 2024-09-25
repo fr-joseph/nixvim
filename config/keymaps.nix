@@ -15,6 +15,16 @@
   # or list of the above
   keymaps = [
     ##############################################
+    ### beginning of line
+    ##############################################
+    {
+      options.desc = "beginning of line";
+      action = "<Home>";
+      key = "<C-a>";
+      mode = "!";
+      options.silent = true;
+    }
+    ##############################################
     ### UI toggle
     ##############################################
     {

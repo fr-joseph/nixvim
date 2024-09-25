@@ -4,8 +4,7 @@
   plugins.luasnip = {
     enable = true;
     settings = {
-      enable_autosnippets = true;
-      store_selection_keys = "<Tab>";
+      enable_autosnippets = false;
     };
     fromVscode = [
       {
@@ -26,34 +25,29 @@
       autoEnableSources = false;
       settings = {
         experimental = {
-          ghost_text = true;
+          ghost_text = false;
         };
       };
       settings = {
         mapping = {
           __raw = ''
             cmp.mapping.preset.insert({
-              ['<C-j>'] = cmp.mapping.select_next_item(),
-              ['<C-k>'] = cmp.mapping.select_prev_item(),
+              ['<C-n>'] = cmp.mapping.select_next_item(),
+              ['<C-p>'] = cmp.mapping.select_prev_item(),
               ['<C-e>'] = cmp.mapping.abort(),
-
               ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-
               ['<C-f>'] = cmp.mapping.scroll_docs(4),
-
               ['<C-Space>'] = cmp.mapping.complete(),
+              -- ['<S-CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+              -- ['<C-y>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
 
-              ['<S-CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-
-              -- Taken from https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
-              -- to stop interference between cmp and luasnip
-
-              ['<CR>'] = cmp.mapping(function(fallback)
+              ['<C-Space>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                   if luasnip.expandable() then
                     luasnip.expand()
                   else
                     cmp.confirm({
+                      behavior = cmp.ConfirmBehavior.Insert,
                       select = true,
                     })
                   end
@@ -62,10 +56,53 @@
                 end
               end),
 
+              ['<Down>'] = {
+                c = function()
+                  local fn = function()
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Down>', true, false, true), 'n', true)
+                  end
+                  if cmp.visible() then
+                    fn = cmp.mapping.select_next_item(select_opts)
+                  end
+                  fn()
+                end,
+              },
+
+              ['<Up>'] = {
+                c = function()
+                  local fn = function()
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', true)
+                  end
+                  if cmp.visible() then
+                    fn = cmp.mapping.select_prev_item(select_opts)
+                  end
+                  fn()
+                end,
+              },
+
+
+              -- ["<Tab>"] = cmp.mapping(function(fallback)
+              --   if cmp.visible() then
+              --     cmp.select_next_item()
+              --   elseif luasnip.locally_jumpable(1) then
+              --     luasnip.jump(1)
+              --   else
+              --     fallback()
+              --   end
+              -- end, { "i", "s" }),
+
+              -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+              --   if cmp.visible() then
+              --     cmp.select_prev_item()
+              --   elseif luasnip.locally_jumpable(-1) then
+              --     luasnip.jump(-1)
+              --   else
+              --     fallback()
+              --   end
+              -- end, { "i", "s" }),
+
               ["<Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif luasnip.locally_jumpable(1) then
+                if luasnip.locally_jumpable(1) then
                   luasnip.jump(1)
                 else
                   fallback()
@@ -73,14 +110,13 @@
               end, { "i", "s" }),
 
               ["<S-Tab>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif luasnip.locally_jumpable(-1) then
+                if luasnip.locally_jumpable(-1) then
                   luasnip.jump(-1)
                 else
                   fallback()
                 end
               end, { "i", "s" }),
+
             })
           '';
         };
@@ -104,6 +140,7 @@
           fetching_timeout = 200;
           max_view_entries = 30;
         };
+        preselect = "cmp.PreselectMode.None";
         window = {
           completion = {
             border = "rounded";
@@ -163,30 +200,43 @@
         TypeParameter = "",
       }
 
-    local cmp = require'cmp'
+    local cmp = require('cmp')
+    local cmp_api = require('cmp.utils.api')
+    local select_opts = { behavior = cmp.SelectBehavior.Insert }
 
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({'/', "?" }, {
-          sources = {
-          { name = 'buffer' }
-          }
-          })
+    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline({'/', "?" }, {
+        sources = {
+        { name = 'buffer' }
+        }
+        })
 
     -- Set configuration for specific filetype.
-      cmp.setup.filetype('gitcommit', {
-          sources = cmp.config.sources({
-              { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-              }, {
-              { name = 'buffer' },
-              })
-          })
+    cmp.setup.filetype('gitcommit', {
+        sources = cmp.config.sources({
+            { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+            }, {
+            { name = 'buffer' },
+            })
+        })
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(':', {
-          sources = cmp.config.sources({
-              { name = 'path' }
-              }, {
-              { name = 'cmdline' }
-              }),
-          })  '';
+    cmp.setup.cmdline(':', {
+        sources = cmp.config.sources({
+            { name = 'path' }
+            }, {
+            { name = 'cmdline' }
+            }),
+        })  
+
+    -- jump to documentation window while in insert mode
+    -- (can use `KK` for `Lspsaga hover_doc` in normal mode, `q` to close)
+    -- https://github.com/hrsh7th/nvim-cmp/discussions/1517#discussioncomment-5607673
+    vim.keymap.set("i", "<C-S-K>", function()
+      vim.cmd.stopinsert()
+      vim.lsp.buf.signature_help()
+      vim.defer_fn(function() vim.cmd.wincmd("w") end, 100)
+      vim.keymap.set("n", "q", ":close<CR>", { buffer = true })
+    end)
+  '';
 }

@@ -73,13 +73,13 @@
     wildmode = "longest:full"; # complete longest common match & show all in PUM
     wildoptions = "pum"; # show matches in pop-up-menu
 
-    # TODO: preview vs popup
     completeopt = [
       "menu"
       "menuone"
-      "noinsert"
+      # "noinsert"
+      "noselect"
       "preview"
-    ]; # always show menu; don"t auto-insert
+    ];
 
     conceallevel = 2; # hide concealed text; unless has replacement character
     concealcursor = ""; # but don"t conceal anything in cursorline
@@ -88,6 +88,7 @@
     autochdir = false; # can break plugins
     autoread = true; # autoread file changes from disk when possible
     cmdheight = 1;
+    cedit = "<C-q>"; # use this instead; don't use <C-f> to enter cmdline window
     confirm = false; # don"t ask for confirmation; rather just fail with an error message
     cursorline = true;
     hidden = true; # hide buffers rather than abandoning them

@@ -1,5 +1,6 @@
 {
   imports = [
+    ./after-ftplugin.nix
     ./cmp.nix
     ./colorizer.nix
     ./colorscheme.nix
